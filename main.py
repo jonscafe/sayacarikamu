@@ -2,26 +2,7 @@ import streamlit as st
 import subprocess
 import os
 
-# Fungsi untuk menginstal dependencies dari file requirements.txt
-def install_requirements(requirements_file):
-    """
-    Instal dependencies yang terdaftar dalam file requirements.txt.
-
-    Args:
-    requirements_file (str): Path ke file requirements.txt.
-
-    Returns:
-    None
-    """
-    # Jalankan perintah pip install
-    subprocess.run(["pip", "install", "-r", requirements_file])
-
-# Jalankan instalasi dependencies jika belum terinstal
-if not os.path.exists('venv'):
-    st.text("Instalasi dependencies...")
-    requirements_file_path = "requirements.txt"
-    install_requirements(requirements_file_path)
-
+subprocess.run(["pip", "install", "-r", "requirements.txt"])
 # Import modul yang diperlukan setelah dependencies terinstal
 from datadikti import datadikti as datadikti
 from linkedin import run_linkedin_search as linkedin_search
