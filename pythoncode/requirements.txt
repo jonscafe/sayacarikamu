@@ -1,0 +1,5 @@
+googlesearch-python
+requests_html
+beautifulsoup4
+sys
+time
