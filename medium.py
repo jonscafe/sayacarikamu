@@ -1,8 +1,10 @@
 from requests_html import HTMLSession
 
+import streamlit as st
+
 def medium(user_input):
-    print('MEDIUM')
-    print('=========================')
+    st.write('MEDIUM')
+    st.write('=========================')
     session = HTMLSession()
     search_url = f'https://medium.com/search/users?q={user_input}'
 
@@ -19,9 +21,10 @@ def medium(user_input):
         unique_usernames.add(username_text) #unique username
 
     for username_text in unique_usernames:
-        print(f'Username: {username_text}, Link: https://medium.com/{username_text}')
+        st.write(f'Username: {username_text}, Link: https://medium.com/{username_text}')
 
-    print('=========================')
+    st.write('=========================')
+
 
 if __name__ == "__main__":
     medium()
