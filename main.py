@@ -1,8 +1,28 @@
+import streamlit as st
 import subprocess
-requirements_file_path = "requirements.txt"
-subprocess.run(["pip", "install", "-r", requirements_file])
-
 import os
+
+# Fungsi untuk menginstal dependencies dari file requirements.txt
+def install_requirements(requirements_file):
+    """
+    Instal dependencies yang terdaftar dalam file requirements.txt.
+
+    Args:
+    requirements_file (str): Path ke file requirements.txt.
+
+    Returns:
+    None
+    """
+    # Jalankan perintah pip install
+    subprocess.run(["pip", "install", "-r", requirements_file])
+
+# Jalankan instalasi dependencies jika belum terinstal
+if not os.path.exists('venv'):
+    st.text("Instalasi dependencies...")
+    requirements_file_path = "requirements.txt"
+    install_requirements(requirements_file_path)
+
+# Import modul yang diperlukan setelah dependencies terinstal
 from datadikti import datadikti as datadikti
 from linkedin import run_linkedin_search as linkedin_search
 from pddikti import pddikti as pddikti
@@ -13,6 +33,7 @@ from sinta import sinta as sinta
 import sys
 import time
 
+# Fungsi untuk animasi loading
 def loading_animation():
     chars = "/—\\|"
     for _ in range(20):
@@ -21,6 +42,7 @@ def loading_animation():
             sys.stdout.flush()
             time.sleep(0.1)
 
+# Fungsi untuk pesan selamat datang
 def welcomingMsg():
     word = "SayaCariKamu!"
     author_info = "\033[95mauthor: jonscafe / k.eii\033[0m"
@@ -34,17 +56,18 @@ def welcomingMsg():
     centered_author_info = f"{separator_line} {author_info} {separator_line}"
     centered_project_info = f"{separator_line} {project_info} {separator_line}"
 
-    print(centered_word)
-    print(centered_author_info)
-    print(centered_project_info)
+    st.text(centered_word)
+    st.text(centered_author_info)
+    st.text(centered_project_info)
 
+# Fungsi utama
 def main():
     welcomingMsg()
-    print('')
-    user_input = input("inputNama: ")
+    st.text('')
+    user_input = st.text_input("inputNama:")
     loading_animation()
-    print('')
-    print('=========================')
+    st.text('')
+    st.text('=========================')
 
     datadikti(user_input)
     pddikti(user_input)
