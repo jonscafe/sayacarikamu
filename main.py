@@ -1,3 +1,7 @@
+import subprocess
+requirements_file_path = "requirements.txt"
+subprocess.run(["pip", "install", "-r", requirements_file])
+
 import os
 from datadikti import datadikti as datadikti
 from linkedin import run_linkedin_search as linkedin_search
