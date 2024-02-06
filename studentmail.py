@@ -1,3 +1,4 @@
+import streamlit as st
 from googlesearch import search
 
 def google_search(query, num_results=5):
@@ -5,8 +6,8 @@ def google_search(query, num_results=5):
     return results
 
 def run_studentmail_search(user_input):
-    print('STUDENTMAIL SEARCH (GOOGLE DORKING)')
-    print('=========================')
+    st.write('STUDENTMAIL SEARCH (GOOGLE DORKING)')
+    st.write('=========================')
     input_words = user_input.split()
 
     # Check if there are three or more words, then delete the last word
@@ -20,5 +21,5 @@ def run_studentmail_search(user_input):
     search_results = google_search(query)
     
     for i, result in enumerate(search_results, start=1):
-        print(f"Result {i}: {result}")
-    print('=========================')
+        st.write(f"Result {i}: {result}")
+    st.write('=========================')
