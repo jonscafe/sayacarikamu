@@ -26,7 +26,7 @@ def loading_animation():
 # Fungsi untuk pesan selamat datang
 def welcomingMsg():
     word = "SayaCariKamu!"
-    author_info = "\033[95mauthor: jonscafe / k.eii\033[0m"
+    author_info = "author: jonscafe / k.eii"
     project_info = "soceng project: osint/information gathering tool"
 
     line_length = len(word) + 6
@@ -49,6 +49,9 @@ def main():
     loading_animation()
     st.text('')
     st.text('=========================')
+    st.text('Web app is very unstable, consider using the EXE or CLI')
+    st.text('=========================')
+
 
     datadikti(user_input)
     pddikti(user_input)
