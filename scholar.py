@@ -1,35 +1,27 @@
 import streamlit as st
-from requests_html import HTMLSession
+import requests
+from bs4 import BeautifulSoup
 
 def scholar(user_input):
     st.write('SCHOLAR')
     st.write('=========================')
-    session = HTMLSession()
+    
     search_url = f'https://scholar.google.com/citations?view_op=search_authors&mauthors={user_input}&hl=id&oi=ao'
+    search_response = requests.get(search_url)
+    soup = BeautifulSoup(search_response.content, 'html.parser')
 
-    search_response = session.get(search_url)
-    search_response.html.render(timeout=10)
-    user_input_lower = user_input.lower()
-    info_author = search_response.html.text.lower()
+    author_info = soup.find('div', {'id': 'gsc_prf'})
 
-    if user_input_lower in info_author:
-        index = info_author.find(user_input_lower)
-        
-        name_and_affiliation_line = info_author[index:].split('\n')[0].strip()
-
-        if ' Afliasi: ' in name_and_affiliation_line:
-            name_index = name_and_affiliation_line.find(' Afliasi: ')
-            name = name_and_affiliation_line[:name_index].strip()
-            st.write('Nama:', name)
-        else:
-            st.write('Nama:', name_and_affiliation_line)
-
-        st.write('Link Scholar:', search_response.url)
+    if author_info:
+        name = author_info.find('div', {'id': 'gsc_prf_in'}).text.strip()
+        affiliation = author_info.find('div', {'class': 'gsc_prf_il'}).text.strip()
+        st.write('Nama:', name)
+        st.write('Afliasi:', affiliation)
+        st.write('Link Scholar:', search_url)
     else:
-        st.write(f'No information found for {user_input}')
+        st.write(f'Tidak ditemukan informasi untuk {user_input}')
     
     st.write('=========================')
 
-    
 if __name__ == "__main__":
     scholar()
