@@ -2,8 +2,8 @@ import streamlit as st
 import subprocess
 import os
 
-subprocess.run(["pip", "install", "-r", "requirements.txt"])
-# Import modul yang diperlukan setelah dependencies terinstal
+# subprocess.run(["pip", "install", "-r", "requirements.txt"])
+# # Import modul yang diperlukan setelah dependencies terinstal
 from datadikti import datadikti as datadikti
 from linkedin import run_linkedin_search as linkedin_search
 from pddikti import pddikti as pddikti
