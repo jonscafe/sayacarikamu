@@ -6,17 +6,18 @@ def google_search(query, num_results=5):
     return results
 
 def run_linkedin_search(user_input):
-    print('LINKEDIN (GOOGLE DORKING)')
-    print('=========================')
+    st.write('LINKEDIN (GOOGLE DORKING)')
+    st.write('=========================')
 
     query = f'"{user_input}" intext:"linkedin"'
 
     search_results = google_search(query)
 
     for i, result in enumerate(search_results, start=1):
-        print(f"linkedin account: {result}")
+        st.write(f"linkedin account: {result}")
     
-    print('=========================')
+    st.write('=========================')
+
 
 if __name__ == "__main__":
     run_linkedin_search()
