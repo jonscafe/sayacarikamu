@@ -1,5 +1,5 @@
 googlesearch-python
 requests_html
 beautifulsoup4
-sys
-time
+streamlit
+lxml[html_clean]
