@@ -1,3 +1,4 @@
 googlesearch-python
 requests_html
 beautifulsoup4
+streamlit
